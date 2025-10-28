@@ -1,0 +1,57 @@
+/* Reset defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Title styling */
+header {
+  margin-top: 40px;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  color: #333;
+}
+
+/* Grid of buttons */
+.button-grid {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  gap: 30px;
+  justify-content: center;
+}
+
+.img-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.img-btn img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+.img-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
