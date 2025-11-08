@@ -179,6 +179,7 @@ body {
 .image-grid {
   column-count: 3;
   column-gap: 20px;
+  column-fill: balance;
   margin-top: 30px;
   width: 100%;
   max-width: 1300px;
@@ -231,7 +232,7 @@ body {
 
 /* Gold glow for special images */
 .image-grid img[data-process="true"] {
-  box-shadow: 0 0 25px 5px rgba(159, 54, 198, 0.527), 0 0 60px rgba(255, 215, 0, 0.25);
+  box-shadow: 0 0 25px 5px rgba(104, 30, 131, 0.786), 0 0 60px rgba(255, 215, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .image-grid img[data-process="true"]:hover {
