@@ -16,13 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
   bio.style.display = "block";
   bio.classList.add("fade-in");
 
-  // --- Preload all gallery images for instant switch ---
+  // --- Preload all gallery images (flash-free version) ---
   const preloadImages = (container) => {
     container.querySelectorAll("img").forEach((img) => {
       const pre = new Image();
+      pre.decoding = "async";
+      pre.loading = "eager";
       pre.src = img.src;
     });
   };
+
   preloadImages(digitalGallery);
   preloadImages(traditionalGallery);
 
@@ -31,47 +34,41 @@ document.addEventListener("DOMContentLoaded", () => {
     el.classList.remove("fade-in");
     el.classList.add("fade-out");
     el.style.pointerEvents = "none";
+
     setTimeout(() => {
       el.style.display = "none";
     }, 350);
   }
 
   function fadeIn(el) {
-  if (el.classList.contains("image-grid")) {
-    el.style.display = "block"; // works best with CSS columns
-  } else {
     el.style.display = "block";
+
+    setTimeout(() => {
+      el.classList.remove("fade-out");
+      el.classList.add("fade-in");
+      el.style.pointerEvents = "auto";
+
+      if (el.classList.contains("image-grid")) {
+        animateImages(el);
+      }
+    }, 20);
   }
-
-  setTimeout(() => {
-    el.classList.remove("fade-out");
-    el.classList.add("fade-in");
-    el.style.pointerEvents = "auto";
-
-    // Trigger image animations
-    if (el.classList.contains("image-grid")) {
-      animateImages(el);
-    }
-  }, 20);
-}
-
 
   // --- Apply cascading fade-in to images ---
   function animateImages(container) {
     const images = container.querySelectorAll("img");
     images.forEach((img, index) => {
-      // apply staggered delay
       img.style.setProperty("--delay", `${index * 0.08}s`);
       img.classList.add("visible");
     });
   }
-
 
   // --- Core toggle logic ---
   const showGallery = (gallery, buttonName) => {
     fadeOut(bio);
     fadeOut(digitalGallery);
     fadeOut(traditionalGallery);
+
     setTimeout(() => fadeIn(gallery), 400);
     active = buttonName;
   };
@@ -79,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const showBio = () => {
     fadeOut(digitalGallery);
     fadeOut(traditionalGallery);
+
     setTimeout(() => fadeIn(bio), 400);
     active = null;
   };
@@ -107,9 +105,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
 // =========================================================
 // IMAGE CLICK FOCUS FUNCTIONALITY
 // =========================================================
+
 document.addEventListener("DOMContentLoaded", () => {
   const allImages = document.querySelectorAll(".image-grid img");
 
@@ -140,6 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+// =========================================================
+// PROCESS-IMAGE FEATURE
+// =========================================================
+
 document.addEventListener("DOMContentLoaded", () => {
   const allImages = document.querySelectorAll(".image-grid img");
   const overlay = document.querySelector(".image-overlay");
@@ -162,12 +167,10 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayImg.src = img.src;
       overlay.classList.add("active");
 
-      // Check if the image has process data
       if (img.dataset.process === "true" && img.dataset.processImages) {
         processBtn.style.display = "block";
-        processBtn.onclick = () => {
+        processBtn.onclick = () =>
           showProcessImages(img.dataset.processImages.split(","));
-        };
       } else {
         processBtn.style.display = "none";
       }
@@ -176,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Clicking process button shows process overlay
   function showProcessImages(imageList) {
-    processOverlay.innerHTML = ""; // Clear previous
+    processOverlay.innerHTML = "";
     imageList.forEach((src) => {
       const stepImg = document.createElement("img");
       stepImg.src = src.trim();
@@ -201,5 +204,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-

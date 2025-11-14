@@ -20,9 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const preloadImages = (container) => {
     container.querySelectorAll("img").forEach((img) => {
       const pre = new Image();
+      pre.decoding = "async";
+      pre.loading = "eager";
       pre.src = img.src;
     });
   };
+
   preloadImages(paintingGallery);
   preloadImages(drawingGallery);
 
