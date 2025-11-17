@@ -264,11 +264,20 @@ body {
 /* =========================================================
    GALLERY VISIBILITY DEFAULTS
 ========================================================= */
-#digital-gallery, 
-#traditional-gallery { 
-  display: none; 
-  opacity: 0; 
+/* Hide all galleries on page load */
+#digital-gallery,
+#traditional-gallery,
+#painting-gallery,
+#drawing-gallery,
+#bait-gallery,
+#character-gallery,
+#CIL-gallery,
+#prints-gallery,
+#illustration-gallery {
+  display: none;
+  opacity: 0;
 }
+
 
 /* =========================================================
    FADE HELPERS
