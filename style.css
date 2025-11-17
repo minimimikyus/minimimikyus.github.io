@@ -403,3 +403,84 @@ body {
   font-size: 0.9rem;
   pointer-events: none;
 }
+
+
+/* =========================================================
+   SOCIAL LINK BUTTONS
+========================================================= */
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(106, 13, 173, 0.35);
+  backdrop-filter: blur(12px) saturate(170%);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 20px rgba(106, 13, 173, 0.25);
+  transition: all 0.3s ease;
+}
+
+.social-btn img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+.social-btn:hover {
+  transform: scale(1.07);
+  background: rgba(106, 13, 173, 0.55);
+  box-shadow: 0 8px 28px rgba(157, 90, 255, 0.55);
+}
+
+/* Instagram accent */
+.social-btn.instagram:hover {
+  background: rgba(225, 48, 108, 0.55);
+  box-shadow: 0 8px 28px rgba(225, 48, 108, 0.45);
+}
+
+/* LinkedIn accent */
+.social-btn.linkedin:hover {
+  background: rgba(10, 102, 194, 0.55);
+  box-shadow: 0 8px 28px rgba(10, 102, 194, 0.45);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .social-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Right column wrapper for buttons + bio */
+.bio-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 480px;
+}
+
+/* Center social links above the bio */
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
