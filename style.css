@@ -48,21 +48,41 @@ body {
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
-.navbar ul { list-style: none; display: flex; gap: 40px; align-items: center; }
-.navbar a {
-  display: inline-flex; align-items: center; text-decoration: none;
-  color: #6a0dad; font-weight: 600; font-size: 1rem;
-  border-radius: 999px; padding: 8px 16px; transition: all 0.35s ease;
+
+.navbar ul { 
+  list-style: none; 
+  display: flex; 
+  gap: 40px; 
+  align-items: center; 
 }
+
+.navbar a {
+  display: inline-flex; 
+  align-items: center; 
+  text-decoration: none;
+  color: #6a0dad; 
+  font-weight: 600; 
+  font-size: 1rem;
+  border-radius: 999px; 
+  padding: 8px 16px; 
+  transition: all 0.35s ease;
+}
+
 .navbar a:hover {
-  background: #6a0dad; color: #fff; transform: scale(1.05);
+  background: #6a0dad; 
+  color: #fff; 
+  transform: scale(1.05);
   box-shadow: 0 0 20px rgba(157, 90, 255, 0.6);
 }
+
 .navbar a.active {
-  background: #6a0dad; color: #fff; transform: scale(1.05);
+  background: #6a0dad; 
+  color: #fff; 
+  transform: scale(1.05);
   box-shadow: 0 0 25px rgba(157, 90, 255, 0.8);
   animation: glowPulse 2.5s ease-in-out infinite alternate;
 }
+
 @keyframes glowPulse {
   0% { box-shadow: 0 0 18px rgba(157, 90, 255, 0.5); }
   100% { box-shadow: 0 0 35px rgba(157, 90, 255, 0.8); }
@@ -83,6 +103,7 @@ body {
   padding-bottom: 100px;
   animation: fadeIn 1s ease-out;
 }
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -98,15 +119,18 @@ body {
    BIO / CONTENT BOX
 ========================================================= */
 
-/* profile group stays flex */
+/* UPDATED → Side-by-side layout */
 .profile {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1.75em;
+  justify-content: center;
+  text-align: left;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: wrap;
 }
 
-/* content-box = visible info box for illustration bio */
+/* content-box (used on illustration pages) */
 .content-box {
   display: block;
   font-size: 1.05rem;
@@ -121,60 +145,92 @@ body {
   margin: 2em auto;
 }
 
-/* .bio = about-me text block */
+/* UPDATED → Bio box for About Me page */
 .bio {
-  display: block;
+  max-width: 480px;
   font-size: 1.05rem;
   line-height: 1.65;
-  max-width: 700px;
   color: #3a006f;
   background: rgba(255, 255, 255, 0.75);
   padding: 22px 26px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(106, 13, 173, 0.08);
   backdrop-filter: blur(6px);
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* =========================================================
    PROFILE IMAGE (ABOUT ME PAGE)
 ========================================================= */
 .profile-pic {
-  width: 240px; height: auto; border-radius: 20px; object-fit: cover;
-  margin-top: 20px; margin-bottom: 20px;
+  width: 240px;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
   box-shadow: 0 8px 25px rgba(106, 13, 173, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.profile-pic:hover { transform: scale(1.03); box-shadow: 0 12px 35px rgba(106, 13, 173, 0.25); }
-@media (max-width: 720px) { .profile-pic { width: 60%; } }
+
+.profile-pic:hover { 
+  transform: scale(1.03); 
+  box-shadow: 0 12px 35px rgba(106, 13, 173, 0.25); 
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 720px) { 
+  .profile {
+    flex-direction: column;
+    text-align: center;
+  }
+  .bio {
+    margin-top: 10px;
+  }
+}
 
 /* =========================================================
    ILLUSTRATION PAGE — BUTTONS
 ========================================================= */
 .button-row {
-  display: flex; justify-content: center; align-items: center;
-  gap: 60px; margin-top: 1.5em; flex-wrap: wrap;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  gap: 60px; 
+  margin-top: 1.5em; 
+  flex-wrap: wrap;
 }
+
 .switch-btn {
-  position: relative; background: rgba(106, 13, 173, 0.25); color: #fff;
-  font-weight: 600; font-size: 1.1rem; border: 1.5px solid rgba(255,255,255,0.2);
-  border-radius: 999px; padding: 16px 44px; cursor: pointer;
+  position: relative; 
+  background: rgba(106, 13, 173, 0.25); 
+  color: #fff;
+  font-weight: 600; 
+  font-size: 1.1rem; 
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 999px; 
+  padding: 16px 44px; 
+  cursor: pointer;
   backdrop-filter: blur(14px) saturate(160%) brightness(1.05);
   -webkit-backdrop-filter: blur(14px) saturate(160%) brightness(1.05);
   box-shadow: 0 4px 18px rgba(106, 13, 173, 0.25);
-  letter-spacing: 0.4px; transition: all 0.3s ease;
+  letter-spacing: 0.4px; 
+  transition: all 0.3s ease;
 }
-.switch-btn::before {
-  content: ""; position: absolute; inset: 0; border-radius: 999px;
-  background: linear-gradient(145deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 100%);
-  pointer-events: none; opacity: 0.5;
+
+.switch-btn:hover { 
+  transform: scale(1.06); 
+  background: rgba(106, 13, 173, 0.35); 
+  box-shadow: 0 6px 24px rgba(106, 13, 173, 0.35); 
 }
-.switch-btn:hover { transform: scale(1.06); background: rgba(106, 13, 173, 0.35); box-shadow: 0 6px 24px rgba(106, 13, 173, 0.35); }
-.switch-btn.active-btn { background: rgba(106,13,173,0.45); box-shadow: 0 8px 28px rgba(157,90,255,0.55); transform: scale(1.08); border-color: rgba(255,255,255,0.3); }
-@media (max-width: 720px) { .switch-btn { font-size: 1rem; padding: 12px 32px; } .button-row { gap: 28px; } }
+
+.switch-btn.active-btn { 
+  background: rgba(106,13,173,0.45); 
+  box-shadow: 0 8px 28px rgba(157,90,255,0.55); 
+  transform: scale(1.08); 
+  border-color: rgba(255,255,255,0.3); 
+}
 
 /* =========================================================
-   MASONRY GRID (Illustration pages)
+   MASONRY GRID
 ========================================================= */
 .image-grid {
   column-count: 3;
@@ -184,26 +240,50 @@ body {
   width: 100%;
   max-width: 1300px;
 }
+
 .image-grid img {
-  width: 100%; margin-bottom: 20px; border-radius: 12px;
+  width: 100%; 
+  margin-bottom: 20px; 
+  border-radius: 12px;
   box-shadow: 0 8px 20px rgba(106, 13, 173, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   break-inside: avoid;
-  opacity: 0; transform: translateY(15px); animation: fadeInImage 0.6s ease forwards;
+  opacity: 0; 
+  transform: translateY(15px); 
+  animation: fadeInImage 0.6s ease forwards;
 }
-@keyframes fadeInImage { to { opacity: 1; transform: translateY(0); } }
-.image-grid img.visible { animation-delay: var(--delay, 0s); }
+
+@keyframes fadeInImage { 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+.image-grid img.visible { 
+  animation-delay: var(--delay, 0s); 
+}
 
 /* =========================================================
    GALLERY VISIBILITY DEFAULTS
 ========================================================= */
-#digital-gallery, #traditional-gallery { display: none; opacity: 0; }
+#digital-gallery, 
+#traditional-gallery { 
+  display: none; 
+  opacity: 0; 
+}
 
 /* =========================================================
    FADE HELPERS
 ========================================================= */
-.fade-in { opacity: 1 !important; transition: opacity 0.35s ease, transform 0.35s ease; transform: translateY(0); }
-.fade-out { opacity: 0 !important; transition: opacity 0.35s ease, transform 0.35s ease; transform: translateY(10px); }
+.fade-in { 
+  opacity: 1 !important; 
+  transition: opacity 0.35s ease, transform 0.35s ease; 
+  transform: translateY(0); 
+}
+
+.fade-out { 
+  opacity: 0 !important; 
+  transition: opacity 0.35s ease, transform 0.35s ease; 
+  transform: translateY(10px); 
+}
 
 /* =========================================================
    RESPONSIVE GLOBAL DESIGN
@@ -219,28 +299,47 @@ body {
    IMAGE OVERLAY
 ========================================================= */
 .image-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(6px);
-  display: flex; justify-content: center; align-items: center; z-index: 999;
-  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  position: fixed; 
+  inset: 0; 
+  background: rgba(0,0,0,0.8); 
+  backdrop-filter: blur(6px);
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 999;
+  opacity: 0; 
+  pointer-events: none; 
+  transition: opacity 0.3s ease;
 }
-.image-overlay.active { opacity: 1; pointer-events: all; }
-.image-overlay img { max-width: 90%; max-height: 90%; border-radius: 14px; transition: transform 0.3s ease; }
+
+.image-overlay.active { 
+  opacity: 1; 
+  pointer-events: all; 
+}
+
+.image-overlay img { 
+  max-width: 90%; 
+  max-height: 90%; 
+  border-radius: 14px; 
+  transition: transform 0.3s ease; 
+}
 
 /* =========================================================
    PROCESS IMAGE EFFECTS
 ========================================================= */
-
-/* Gold glow for special images */
 .image-grid img[data-process="true"] {
-  box-shadow: 0 0 25px 5px rgba(104, 30, 131, 0.786), 0 0 60px rgba(255, 215, 0, 0.25);
+  box-shadow: 0 0 25px 5px rgba(104, 30, 131, 0.786), 
+              0 0 60px rgba(255, 215, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .image-grid img[data-process="true"]:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 40px 8px rgba(255, 215, 0, 0.7), 0 0 90px rgba(255, 215, 0, 0.45);
+  box-shadow: 0 0 40px 8px rgba(255, 215, 0, 0.7),
+              0 0 90px rgba(255, 215, 0, 0.45);
 }
 
-/* --- Process button in overlay --- */
+/* Process button */
 .process-btn {
   position: absolute;
   bottom: 40px;
@@ -256,12 +355,13 @@ body {
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
   transition: all 0.3s ease;
 }
+
 .process-btn:hover {
   background: linear-gradient(135deg, #ffea70, #ffb400);
   box-shadow: 0 0 35px rgba(255, 215, 0, 0.8);
 }
 
-/* --- Fullscreen process overlay --- */
+/* Process overlay */
 .process-overlay {
   position: fixed;
   inset: 0;
@@ -278,6 +378,7 @@ body {
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
+
 .process-overlay.active {
   opacity: 1;
   pointer-events: all;
@@ -291,7 +392,6 @@ body {
   object-fit: contain;
 }
 
-/* --- Close area for process overlay --- */
 .process-overlay::after {
   content: "Click anywhere to close";
   position: fixed;

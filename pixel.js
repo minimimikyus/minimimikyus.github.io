@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const cilBtn = document.getElementById("CIL-btn");
-  const printsBtn = document.getElementById("prints-btn");
-  const illustrationBtn = document.getElementById("illustration-btn");
+  const baitBtn = document.getElementById("bait-btn");
+  const characterBtn = document.getElementById("character-btn");
   const bio = document.getElementById("bio");
-  const cilGallery = document.getElementById("CIL-gallery");
-  const printsGallery = document.getElementById("prints-gallery");
-  const illustrationGallery = document.getElementById("illustration-gallery");
+  const baitGallery = document.getElementById("bait-gallery");
+  const characterGallery = document.getElementById("character-gallery");
 
   let active = null;
 
   // --- Hide both galleries initially ---
-  [cilGallery, printsGallery, illustrationGallery].forEach((gallery) => {
+  [baitGallery, characterGallery].forEach((gallery) => {
     gallery.style.display = "none";
     gallery.style.opacity = "0";
   });
@@ -25,9 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  preloadImagesFromContainer(cilGallery);
-  preloadImagesFromContainer(printsGallery);
-  preloadImagesFromContainer(illustrationGallery);
+  preloadImagesFromContainer(baitGallery);
+  preloadImagesFromContainer(characterGallery);
 
   // --- Fade helpers ---
   function fadeOut(el) {
@@ -73,55 +70,39 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Core toggle logic ---
   const showGallery = (gallery, buttonName) => {
     fadeOut(bio);
-    fadeOut(cilGallery);
-    fadeOut(printsGallery);
-    fadeOut(illustrationGallery);
+    fadeOut(baitGallery);
+    fadeOut(characterGallery);
     setTimeout(() => fadeIn(gallery), 400);
     active = buttonName;
   };
 
   const showBio = () => {
-    fadeOut(cilGallery);
-    fadeOut(printsGallery);
-    fadeOut(illustrationGallery);
+    fadeOut(baitGallery);
+    fadeOut(characterGallery);
     setTimeout(() => fadeIn(bio), 400);
     active = null;
   };
 
   // --- Button click behavior ---
-  cilBtn.addEventListener("click", () => {
-    if (active === "cil") {
-      cilBtn.classList.remove("active-btn");
+  baitBtn.addEventListener("click", () => {
+    if (active === "bait") {
+      baitBtn.classList.remove("active-btn");
       showBio();
     } else {
-      cilBtn.classList.add("active-btn");
-      printsBtn.classList.remove("active-btn");
-      illustrationBtn.classList.remove("active-btn");
-      showGallery(cilGallery, "cil");
+      baitBtn.classList.add("active-btn");
+      characterBtn.classList.remove("active-btn");
+      showGallery(baitGallery, "bait");
     }
   });
 
-  printsBtn.addEventListener("click", () => {
-    if (active === "prints") {
-      printsBtn.classList.remove("active-btn");
+  characterBtn.addEventListener("click", () => {
+    if (active === "character") {
+      characterBtn.classList.remove("active-btn");
       showBio();
     } else {
-      printsBtn.classList.add("active-btn");
-      cilBtn.classList.remove("active-btn");
-      illustrationBtn.classList.remove("active-btn");
-      showGallery(printsGallery, "prints");
-    }
-  });
-
-  illustrationBtn.addEventListener("click", () => {
-    if (active === "illustration") {
-      illustrationBtn.classList.remove("active-btn");
-      showBio();
-    } else {
-      illustrationBtn.classList.add("active-btn");
-      cilBtn.classList.remove("active-btn");
-      printsBtn.classList.remove("active-btn");
-      showGallery(illustrationGallery, "illustration");
+      characterBtn.classList.add("active-btn");
+      baitBtn.classList.remove("active-btn");
+      showGallery(characterGallery, "character");
     }
   });
 });

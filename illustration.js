@@ -17,17 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
   bio.classList.add("fade-in");
 
   // --- Preload all gallery images (flash-free version) ---
-  const preloadImages = (container) => {
-    container.querySelectorAll("img").forEach((img) => {
-      const pre = new Image();
-      pre.decoding = "async";
-      pre.loading = "eager";
-      pre.src = img.src;
-    });
-  };
+  function preloadImagesFromContainer(container) {
+    const urls = [...container.querySelectorAll("img")].map(img => img.src);
 
-  preloadImages(digitalGallery);
-  preloadImages(traditionalGallery);
+    urls.forEach(url => {
+      const pre = new Image();
+      pre.src = url;
+    });
+  }
+
+
+  preloadImagesFromContainer(digitalGallery);
+  preloadImagesFromContainer(traditionalGallery);
 
   // --- Fade helpers ---
   function fadeOut(el) {
