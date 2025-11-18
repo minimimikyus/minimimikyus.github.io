@@ -604,3 +604,47 @@ body {
 }
 
 
+/* Fix circular logo hover by masking the real square image */
+.dc-logo {
+  width: 140px;
+  height: 140px;
+  clip-path: circle(50% at 50% 50%); /* true circular mask */
+  border-radius: 50%;                /* for safety */
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 25px rgba(106, 13, 173, 0.15);
+}
+
+/* FORCE the Daily logo to be a perfect clipped circle */
+.dc-logo {
+  width: 140px !important;
+  height: 140px !important;
+  clip-path: circle(50%) !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+
+/* Hover effect — now smooth with NO square showing */
+.dc-logo:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 35px rgba(106, 13, 173, 0.25);
+}
+
+
+/* Make sure the wrapper isn't showing a square */
+.dc-logo-link {
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  width: 140px !important;
+  height: 140px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
