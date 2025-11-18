@@ -14,7 +14,7 @@
       <ul>
         <li><a href="/">About Me</a></li>
         <li><a href="/Illustration/">Illustration</a></li>
-        <li><a href="/The-Daily-Campus/">The Daily Campus</a></li>
+        <li><a href="/The-Daily-Campus/" class="active">The Daily Campus</a></li>
         <li><a href="/Pixel-Art/">Pixel Art</a></li>
         <li><a href="/University-Work/">University Work</a></li>
       </ul>
@@ -24,6 +24,7 @@
   <main class="hero">
     <div class="intro">
       <h1>The Daily Campus</h1>
+
       <div class="button-row">
         <button id="prints-btn" class="switch-btn">Print Designs</button>
         <button id="CIL-btn" class="switch-btn">Comics</button>
@@ -31,12 +32,25 @@
       </div>
     </div>
 
-    <div id="bio" class="content-box">
-      <p>
-        Colbi is a Staff Artist and Associate Managing Editor at The Daily Campus, UConn's newspaper. 
-        She designs pages for print production alongside creating comics and illustrations for articles!
-      </p>
+    <!-- ===================== NEW LOGO + BIO LAYOUT ===================== -->
+    <div class="dc-profile">
+
+      <!-- Left: clickable Daily Campus logo -->
+      <a href="https://dailycampus.com" target="_blank" class="dc-logo-link">
+        <img src="../images/DC.png" alt="The Daily Campus Logo" class="dc-logo">
+      </a>
+
+      <!-- Right: bio text box -->
+      <div class="dc-text-box">
+        <p>
+          Colbi is a Staff Artist and Associate Managing Editor at The Daily Campus, UConn's newspaper. 
+          She designs pages for print production alongside creating comics and illustrations for articles!
+        </p>
+      </div>
+
     </div>
+    <!-- ================================================================ -->
+
 
     <div id="CIL-gallery" class="image-grid">
       <img src="../images/CIL/CIL1.webp" alt="CIL 1">
@@ -71,14 +85,6 @@
       <img src="../images/prints/prints3.webp" alt="Prints 3">
       <img src="../images/prints/prints4.webp" alt="Prints 4">
       <img src="../images/prints/prints5.webp" alt="Prints 5">
-      <!--
-      <img src="../images/prints/prints4.webp" alt="Prints 4">
-      <img src="../images/prints/prints5.webp" alt="Prints 5">
-      <img src="../images/prints/prints6.webp" alt="Prints 6">
-      <img src="../images/prints/prints7.webp" alt="Prints 7">
-      <img src="../images/prints/prints8.webp" alt="Prints 8">
-      <img src="../images/prints/prints9.webp" alt="Prints 9">
-      -->
     </div>
 
     <div id="illustration-gallery" class="image-grid">
@@ -106,6 +112,7 @@
       <img src="../images/illustration/illustration22.webp" alt="Illustration 22">
       <img src="../images/illustration/illustration23.webp" alt="Illustration 23">
     </div>
+
   </main>
 
   <script src="../highlight.js"></script>
