@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const digitalBtn = document.getElementById("digital-btn");
   const traditionalBtn = document.getElementById("traditional-btn");
-  const bio = document.getElementById("bio");
+  //const bio = document.getElementById("bio");
   const digitalGallery = document.getElementById("digital-gallery");
   const traditionalGallery = document.getElementById("traditional-gallery");
 
@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     gallery.style.opacity = "0";
   });
 
-  bio.style.display = "block";
-  bio.classList.add("fade-in");
+  //bio.style.display = "block";
+  //bio.classList.add("fade-in");
 
   // --- Preload all gallery images (flash-free version) ---
   function preloadImagesFromContainer(container) {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Core toggle logic ---
   const showGallery = (gallery, buttonName) => {
-    fadeOut(bio);
+    //fadeOut(bio);
     fadeOut(digitalGallery);
     fadeOut(traditionalGallery);
 
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fadeOut(digitalGallery);
     fadeOut(traditionalGallery);
 
-    setTimeout(() => fadeIn(bio), 400);
+    //setTimeout(() => fadeIn(bio), 400);
     active = null;
   };
 

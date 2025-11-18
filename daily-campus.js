@@ -2,93 +2,100 @@ document.addEventListener("DOMContentLoaded", () => {
   const cilBtn = document.getElementById("CIL-btn");
   const printsBtn = document.getElementById("prints-btn");
   const illustrationBtn = document.getElementById("illustration-btn");
-  const bio = document.getElementById("bio");
+
+  // The bio text box (right of the logo)
+  const bio = document.querySelector(".dc-text-box");
+
+  // The whole left+right block (logo + bio)
+  const dcProfile = document.querySelector(".dc-profile");
+
   const cilGallery = document.getElementById("CIL-gallery");
   const printsGallery = document.getElementById("prints-gallery");
   const illustrationGallery = document.getElementById("illustration-gallery");
 
   let active = null;
 
-  // --- Hide both galleries initially ---
-  [cilGallery, printsGallery, illustrationGallery].forEach((gallery) => {
+  // Hide galleries
+  [cilGallery, printsGallery, illustrationGallery].forEach(gallery => {
     gallery.style.display = "none";
     gallery.style.opacity = "0";
   });
 
-  // --- Preload all gallery images for instant switch ---
+  // Preload
   function preloadImagesFromContainer(container) {
     const urls = [...container.querySelectorAll("img")].map(img => img.src);
-
-    urls.forEach(url => {
+    urls.forEach(src => {
       const pre = new Image();
-      pre.src = url;
+      pre.src = src;
     });
   }
-
   preloadImagesFromContainer(cilGallery);
   preloadImagesFromContainer(printsGallery);
   preloadImagesFromContainer(illustrationGallery);
 
-  // --- Fade helpers ---
+  // Fade helpers
   function fadeOut(el) {
+    if (!el) return;
     el.classList.remove("fade-in");
     el.classList.add("fade-out");
     el.style.pointerEvents = "none";
+
     setTimeout(() => {
       el.style.display = "none";
     }, 350);
   }
 
   function fadeIn(el) {
-  if (el.classList.contains("image-grid")) {
-    el.style.display = "block"; // works best with CSS columns
-  } else {
-    el.style.display = "block";
+    if (!el) return;
+
+    // ⭐ FIXED — force correct display mode
+    el.style.display = el.classList.contains("dc-profile") ? "flex" : "block";
+
+    setTimeout(() => {
+      el.classList.remove("fade-out");
+      el.classList.add("fade-in");
+      el.style.pointerEvents = "auto";
+
+      if (el.classList.contains("image-grid")) {
+        animateImages(el);
+      }
+    }, 20);
   }
 
-  setTimeout(() => {
-    el.classList.remove("fade-out");
-    el.classList.add("fade-in");
-    el.style.pointerEvents = "auto";
-
-    // Trigger image animations
-    if (el.classList.contains("image-grid")) {
-      animateImages(el);
-    }
-  }, 20);
-}
-
-
-  // --- Apply cascading fade-in to images ---
   function animateImages(container) {
     const images = container.querySelectorAll("img");
     images.forEach((img, index) => {
-      // apply staggered delay
       img.style.setProperty("--delay", `${index * 0.08}s`);
       img.classList.add("visible");
     });
   }
 
-
-  // --- Core toggle logic ---
-  const showGallery = (gallery, buttonName) => {
+  // Core toggle logic
+  const showGallery = (gallery, name) => {
     fadeOut(bio);
+    fadeOut(dcProfile);
     fadeOut(cilGallery);
     fadeOut(printsGallery);
     fadeOut(illustrationGallery);
+
     setTimeout(() => fadeIn(gallery), 400);
-    active = buttonName;
+    active = name;
   };
 
   const showBio = () => {
     fadeOut(cilGallery);
     fadeOut(printsGallery);
     fadeOut(illustrationGallery);
-    setTimeout(() => fadeIn(bio), 400);
+
+    setTimeout(() => {
+      fadeIn(bio);
+      fadeIn(dcProfile); // stays flex now!
+    }, 400);
+
     active = null;
   };
 
-  // --- Button click behavior ---
+  // Buttons
   cilBtn.addEventListener("click", () => {
     if (active === "cil") {
       cilBtn.classList.remove("active-btn");
@@ -127,19 +134,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =========================================================
-// IMAGE CLICK FOCUS FUNCTIONALITY
+// IMAGE CLICK FOCUS
 // =========================================================
 document.addEventListener("DOMContentLoaded", () => {
   const allImages = document.querySelectorAll(".image-grid img");
 
-  // Create overlay element
   const overlay = document.createElement("div");
   overlay.classList.add("image-overlay");
+
   const overlayImg = document.createElement("img");
   overlay.appendChild(overlayImg);
   document.body.appendChild(overlay);
 
-  // Open overlay on click
   allImages.forEach((img) => {
     img.addEventListener("click", () => {
       overlayImg.src = img.src;
@@ -147,15 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close overlay on click or Esc
-  overlay.addEventListener("click", () => {
-    overlay.classList.remove("active");
-  });
-
+  overlay.addEventListener("click", () => overlay.classList.remove("active"));
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      overlay.classList.remove("active");
-    }
+    if (e.key === "Escape") overlay.classList.remove("active");
   });
 });
-

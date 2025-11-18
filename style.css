@@ -541,11 +541,66 @@ body {
   text-align: left;
 }
 
-/* Mobile layout */
+/* =========================================================
+   PIXEL ART — LOGO + BIO SIDE-BY-SIDE (SAFE, PAGE-LOCAL)
+========================================================= */
+
+.dc-profile {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+  flex-wrap: nowrap; /* desktop: stay side by side */
+  opacity: 1;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.dc-profile.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.dc-profile.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Logo */
+.dc-logo-link {
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dc-logo-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(106, 13, 173, 0.25);
+}
+
+/* Right-hand text box */
+.dc-text-box {
+  max-width: 650px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 26px 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(106, 13, 173, 0.08);
+  backdrop-filter: blur(6px);
+  font-size: 1.1rem;
+  color: #3a006f;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* Mobile: stack vertically */
 @media (max-width: 720px) {
   .dc-profile {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dc-text-box {
+    text-align: center;
   }
 }
+
 

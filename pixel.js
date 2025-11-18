@@ -1,89 +1,99 @@
 document.addEventListener("DOMContentLoaded", () => {
   const baitBtn = document.getElementById("bait-btn");
   const characterBtn = document.getElementById("character-btn");
-  const bio = document.getElementById("bio");
+
   const baitGallery = document.getElementById("bait-gallery");
   const characterGallery = document.getElementById("character-gallery");
 
+  const bio = document.querySelector(".dc-text-box");
+  const dcProfile = document.querySelector(".dc-profile");
+
   let active = null;
 
-  // --- Hide both galleries initially ---
-  [baitGallery, characterGallery].forEach((gallery) => {
-    gallery.style.display = "none";
-    gallery.style.opacity = "0";
+  // Hide galleries initially
+  [baitGallery, characterGallery].forEach((g) => {
+    g.style.display = "none";
+    g.style.opacity = "0";
   });
 
-  // --- Preload all gallery images for instant switch ---
+  // Show bio + profile on load
+  bio.style.display = "block";
+  bio.classList.add("fade-in");
+  dcProfile.style.display = "flex";
+  dcProfile.classList.add("fade-in");
+
+  // --- Preload images ---
   function preloadImagesFromContainer(container) {
     const urls = [...container.querySelectorAll("img")].map(img => img.src);
-
     urls.forEach(url => {
       const pre = new Image();
       pre.src = url;
     });
   }
-
   preloadImagesFromContainer(baitGallery);
   preloadImagesFromContainer(characterGallery);
 
   // --- Fade helpers ---
   function fadeOut(el) {
+    if (!el) return;
     el.classList.remove("fade-in");
     el.classList.add("fade-out");
     el.style.pointerEvents = "none";
+
     setTimeout(() => {
       el.style.display = "none";
     }, 350);
   }
 
   function fadeIn(el) {
-  if (el.classList.contains("image-grid")) {
-    el.style.display = "block"; // works best with CSS columns
-  } else {
-    el.style.display = "block";
+    if (!el) return;
+    el.style.display = el.classList.contains("dc-profile") ? "flex" : "block";
+
+    setTimeout(() => {
+      el.classList.remove("fade-out");
+      el.classList.add("fade-in");
+      el.style.pointerEvents = "auto";
+
+      if (el.classList.contains("image-grid")) {
+        animateImages(el);
+      }
+    }, 20);
   }
 
-  setTimeout(() => {
-    el.classList.remove("fade-out");
-    el.classList.add("fade-in");
-    el.style.pointerEvents = "auto";
-
-    // Trigger image animations
-    if (el.classList.contains("image-grid")) {
-      animateImages(el);
-    }
-  }, 20);
-}
-
-
-  // --- Apply cascading fade-in to images ---
+  // Animate images in a cascading stagger
   function animateImages(container) {
     const images = container.querySelectorAll("img");
     images.forEach((img, index) => {
-      // apply staggered delay
       img.style.setProperty("--delay", `${index * 0.08}s`);
       img.classList.add("visible");
     });
   }
 
-
-  // --- Core toggle logic ---
-  const showGallery = (gallery, buttonName) => {
+  // --- Show gallery ---
+  const showGallery = (gallery, name) => {
     fadeOut(bio);
+    fadeOut(dcProfile);
     fadeOut(baitGallery);
     fadeOut(characterGallery);
+
     setTimeout(() => fadeIn(gallery), 400);
-    active = buttonName;
+    active = name;
   };
 
+  // --- Show bio ---
   const showBio = () => {
     fadeOut(baitGallery);
     fadeOut(characterGallery);
-    setTimeout(() => fadeIn(bio), 400);
+
+    setTimeout(() => {
+      fadeIn(bio);
+      fadeIn(dcProfile);
+    }, 400);
+
     active = null;
   };
 
-  // --- Button click behavior ---
+  // --- Button logic ---
   baitBtn.addEventListener("click", () => {
     if (active === "bait") {
       baitBtn.classList.remove("active-btn");
@@ -107,20 +117,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
 // =========================================================
 // IMAGE CLICK FOCUS FUNCTIONALITY
 // =========================================================
 document.addEventListener("DOMContentLoaded", () => {
   const allImages = document.querySelectorAll(".image-grid img");
 
-  // Create overlay element
   const overlay = document.createElement("div");
   overlay.classList.add("image-overlay");
+
   const overlayImg = document.createElement("img");
   overlay.appendChild(overlayImg);
   document.body.appendChild(overlay);
 
-  // Open overlay on click
   allImages.forEach((img) => {
     img.addEventListener("click", () => {
       overlayImg.src = img.src;
@@ -128,15 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close overlay on click or Esc
-  overlay.addEventListener("click", () => {
-    overlay.classList.remove("active");
-  });
-
+  overlay.addEventListener("click", () => overlay.classList.remove("active"));
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      overlay.classList.remove("active");
-    }
+    if (e.key === "Escape") overlay.classList.remove("active");
   });
 });
-
