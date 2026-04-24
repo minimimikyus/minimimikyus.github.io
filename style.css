@@ -187,6 +187,11 @@ body {
   .bio {
     margin-top: 10px;
   }
+
+    .colbi-holder{
+    align-items: center;
+    width: 100%;
+  }
 }
 
 /* =========================================================
@@ -300,10 +305,44 @@ body {
    RESPONSIVE GLOBAL DESIGN
 ========================================================= */
 @media (max-width: 720px) {
-  .site-header { margin-top: 40px; gap: 12px; }
-  .navbar ul { gap: 22px; }
-  .navbar a { font-size: 0.9rem; padding: 8px 12px; }
-  .hero { margin-top: 80px; padding-bottom: 80px; }
+  .site-header {
+    margin-top: 40px;
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  .navbar {
+    width: 83.333%;
+    max-width: 83.333%;
+    padding: 12px 14px;
+  }
+
+  .navbar ul {
+    width: 100%;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .navbar a {
+    font-size: 0.85rem;
+    padding: 7px 10px;
+  }
+
+  @media (max-width: 720px) {
+  .hero {
+    margin-top: 35px;
+    padding-bottom: 80px;
+  }
+
+  .intro h1 {
+    margin-bottom: 0.2em;
+  }
+
+  .profile {
+    margin-top: 25px;
+  }
+}
 }
 
 /* =========================================================
