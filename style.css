@@ -329,7 +329,6 @@ body {
     padding: 7px 10px;
   }
 
-  @media (max-width: 720px) {
   .hero {
     margin-top: 35px;
     padding-bottom: 80px;
@@ -341,8 +340,29 @@ body {
 
   .profile {
     margin-top: 25px;
+    align-items: center;
   }
-}
+
+  .colbi-holder {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-grid {
+    column-count: 1;
+    column-gap: 0;
+    width: 100%;
+  }
+
+  .image-grid img {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
 
 /* =========================================================
@@ -686,4 +706,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* FORCE MOBILE GALLERY STACK */
+@media screen and (max-width: 900px) {
+  .image-grid {
+    columns: 1 !important;
+    column-count: 1 !important;
+    -webkit-column-count: 1 !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .image-grid img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin-bottom: 20px !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 }
