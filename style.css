@@ -714,8 +714,8 @@ body {
     columns: 1 !important;
     column-count: 1 !important;
     -webkit-column-count: 1 !important;
-    display: block !important;
     width: 100% !important;
+    max-width: 100% !important;
   }
 
   .image-grid img {
@@ -727,5 +727,29 @@ body {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
+  }
+
+  #digital-gallery,
+  #traditional-gallery,
+  #painting-gallery,
+  #drawing-gallery,
+  #bait-gallery,
+  #character-gallery,
+  #CIL-gallery,
+  #prints-gallery,
+  #illustration-gallery {
+    opacity: 0;
+  }
+
+  #digital-gallery.fade-in,
+  #traditional-gallery.fade-in,
+  #painting-gallery.fade-in,
+  #drawing-gallery.fade-in,
+  #bait-gallery.fade-in,
+  #character-gallery.fade-in,
+  #CIL-gallery.fade-in,
+  #prints-gallery.fade-in,
+  #illustration-gallery.fade-in {
+    opacity: 1 !important;
   }
 }
