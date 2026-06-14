@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gallery.style.opacity = "0";
   });
 
-  bio.style.display = "block";
+  bio.style.display = "flex";
   bio.classList.add("fade-in");
 
   // --- Preload all gallery images for instant switch ---
@@ -40,23 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function fadeIn(el) {
-  if (el.classList.contains("image-grid")) {
-    el.style.display = "block"; // works best with CSS columns
-  } else {
-    el.style.display = "block";
+    el.style.display = el.classList.contains("dc-profile") ? "flex" : "block";
+
+    setTimeout(() => {
+      el.classList.remove("fade-out");
+      el.classList.add("fade-in");
+      el.style.pointerEvents = "auto";
+
+      // Trigger image animations
+      if (el.classList.contains("image-grid")) {
+        animateImages(el);
+      }
+    }, 20);
   }
-
-  setTimeout(() => {
-    el.classList.remove("fade-out");
-    el.classList.add("fade-in");
-    el.style.pointerEvents = "auto";
-
-    // Trigger image animations
-    if (el.classList.contains("image-grid")) {
-      animateImages(el);
-    }
-  }, 20);
-}
 
 
   // --- Apply cascading fade-in to images ---
